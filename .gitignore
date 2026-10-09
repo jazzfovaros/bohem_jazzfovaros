@@ -33,3 +33,15 @@ Thumbs.db
 
 # Claude Code (helyi)
 .claude/
+
+# Agent skills (helyi)
+.agents/
+skills-lock.json
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example

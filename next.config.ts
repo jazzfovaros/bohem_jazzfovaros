@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { getBuildLocale } from "./src/lib/buildLocale";
 
 const nextConfig: NextConfig = {
@@ -28,7 +29,7 @@ const nextConfig: NextConfig = {
      */
     deviceSizes: [640, 828, 1200, 1920, 2560],
     imageSizes: [64, 128, 256, 384],
-    /** Netlify Image CDN-nél is segít: hosszabb élettartamú optimalizált variánsok. */
+    /** Hosszabb élettartamú optimalizált variánsok (Netlify / Cloudflare Images). */
     minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io", pathname: "/images/**" },
@@ -44,3 +45,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Locális Wrangler / OpenNext preview támogatás (dev only mellékhatás nélkül buildkor)
+void initOpenNextCloudflareForDev();

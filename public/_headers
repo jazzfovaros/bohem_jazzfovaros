@@ -1,0 +1,16 @@
+# https://developers.cloudflare.com/workers/static-assets/headers
+# https://opennext.js.org/cloudflare/caching#static-assets-caching
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+
+/images/*
+  Cache-Control: public,max-age=86400
+
+/documents/*
+  Cache-Control: public,max-age=86400
+
+/favicon.png
+  Cache-Control: public,max-age=604800
+
+/site.webmanifest
+  Cache-Control: public,max-age=604800

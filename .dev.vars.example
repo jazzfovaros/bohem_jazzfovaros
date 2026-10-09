@@ -1,0 +1,15 @@
+# Cloudflare Workers — helyi / CI változók (másold .dev.vars-be, ne commitold)
+# Cloudflare dashboard → Settings → Variables and Secrets ugyanazok.
+
+NEXTJS_ENV=production
+
+NEXT_PUBLIC_SANITY_PROJECT_ID=ajkz39i8
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2026-01-01
+NEXT_PUBLIC_SITE_URL_HU=https://jazzfovaros.hu
+NEXT_PUBLIC_SITE_URL_EN=https://jazzfovaros.hu
+NEXT_PUBLIC_LOCALE=hu
+NEXT_PUBLIC_GA4_ID=G-Y9BMR7XZK6
+
+# Secret — csak dashboard / .dev.vars (gitignored)
+# SANITY_API_READ_TOKEN=

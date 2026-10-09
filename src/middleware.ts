@@ -43,9 +43,12 @@ function applyCdnCache(response: NextResponse, request: NextRequest): NextRespon
   if (request.method !== "GET" && request.method !== "HEAD") return response;
   if (isDraftRequest(request)) {
     response.headers.set("Netlify-CDN-Cache-Control", "no-store");
+    response.headers.set("CDN-Cache-Control", "no-store");
     return response;
   }
+  /* Netlify Durable CDN + Cloudflare CDN (átállás alatt mindkettő) */
   response.headers.set("Netlify-CDN-Cache-Control", CDN_CACHE_CONTROL);
+  response.headers.set("CDN-Cache-Control", CDN_CACHE_CONTROL);
   return response;
 }
 

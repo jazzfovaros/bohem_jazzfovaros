@@ -28,13 +28,14 @@ function hostnameFromSiteUrl(url: string): string | null {
   }
 }
 
-/** Local dev / Netlify staging — /en path-prefix, nem cross-domain váltás. */
+/** Local dev / Netlify / Cloudflare staging — /en path-prefix, nem cross-domain váltás. */
 export function isStagingOrLocalHost(hostname: string): boolean {
   const h = hostname.toLowerCase();
   return (
     h === "localhost" ||
     h === "127.0.0.1" ||
     h.endsWith(".netlify.app") ||
+    h.endsWith(".workers.dev") ||
     h.endsWith(".localhost")
   );
 }

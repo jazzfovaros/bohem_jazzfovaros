@@ -3,24 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
     "build:hu": "cross-env NEXT_PUBLIC_LOCALE=hu next build",
     "build:en": "cross-env NEXT_PUBLIC_LOCALE=en next build",
     "start": "next start",
     "lint": "next lint",
     "sanity:seed": "tsx scripts/importSanityInitialData.ts",
-    "sanity:check-content": "tsx scripts/checkSanityContent.ts"
+    "sanity:check-content": "tsx scripts/checkSanityContent.ts",
+    "cf:build": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@netlify/blobs": "^8.2.0",
+    "@opennextjs/cloudflare": "^1.20.10",
     "@portabletext/react": "^6.2.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^4.22.0",
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
     "framer-motion": "^12.38.0",
-    "next": "^15.3.1",
+    "next": "^15.5.27",
     "next-sanity": "^11.6.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -37,6 +43,7 @@
     "eslint-config-next": "^15.5.15",
     "tailwindcss": "^4.0.0",
     "tsx": "^4.20.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.149.0"
   }
 }
