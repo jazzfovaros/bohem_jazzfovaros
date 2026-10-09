@@ -1,7 +1,9 @@
 # Átállás: új GitHub + új Netlify fiók
 
-Cél repo: `https://github.com/jazzfovaros/jazzfovaros.git`  
+Cél repo: `https://github.com/jazzfovaros/bohem_jazzfovaros.git`  
 Cél: ugyanaz a működés (Next.js + Sanity + Netlify, `jazzfovaros.hu` + `/en/`).
+
+**Build fix (2026-10):** `netlify.toml` tartalmazza a nyilvános Sanity env-eket (`NEXT_PUBLIC_SANITY_PROJECT_ID` stb.), hogy a Netlify build ne essen el. A `SANITY_API_READ_TOKEN`-t továbbra is csak a Netlify dashboardon állítsd (secret).
 
 ---
 
