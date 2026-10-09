@@ -4,7 +4,13 @@ A site **Next.js 15 + @opennextjs/cloudflare** adapterrel megy Workersre.
 A Sanity CMS változatlan. Netlify egyelőre megmaradhat fallbacknek.
 
 **Worker URL:** https://bohem-jazzfovaros.jazzfovaros-web.workers.dev  
-**Worker name:** `bohem-jazzfovaros`
+**Worker name:** `bohem-jazzfovaros`  
+**Cloudflare account:** `jazzfovaros-web` (workers.dev subdomain)
+
+> Locális `wrangler` jelenleg a `bzalan` accountba deployol →  
+> `https://bohem-jazzfovaros.bzalan.workers.dev`.  
+> A cél URL-hez: `wrangler logout` → `wrangler login` a **jazzfovaros-web**
+> accounttal, majd `npm run deploy` — vagy GitHub → Workers Builds azon az accounton.
 
 ## Parancsok
 
