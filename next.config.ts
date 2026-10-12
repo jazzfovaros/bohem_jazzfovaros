@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { getBuildLocale } from "./src/lib/buildLocale";
 
 const nextConfig: NextConfig = {
@@ -45,6 +44,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// Locális Wrangler / OpenNext preview támogatás (dev only mellékhatás nélkül buildkor)
-void initOpenNextCloudflareForDev();
