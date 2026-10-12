@@ -28,12 +28,14 @@ Workers project → **Settings → Builds**:
 
 | Mező | Érték |
 |------|--------|
-| **Build command** | `npm run build` (Workers CI-n automatikusan OpenNext) **vagy** `npx opennextjs-cloudflare build` |
+| **Build command** | `npm run cf:build` (= `opennextjs-cloudflare build`) |
 | **Deploy command** | `npx wrangler deploy` |
 | **Root directory** | `/` (repo root) |
-| **Node version** | **20** (ne 24 — Build variables: `NODE_VERSION=20`) |
+| **Node version** | **22** (`NODE_VERSION=22`) |
 
-A `scripts/build.mjs` a `WORKERS_CI=1` env alapján OpenNextet futtat; Netlify / local továbbra is `next build`.
+**Ne** használd a `npm run build`-et Cloudflare Build commandként: az OpenNext
+belül meghívja a `next build`-et (`npm run build`), és ha az ismét OpenNextet
+indítana, végtelen rekurzió lenne.
 
 ### Build variables (Settings → Builds → Variables)
 
@@ -41,7 +43,7 @@ Kötelező a Next buildhez (vagy használd a kódbeli defaultokat):
 
 | Key | Value |
 |-----|--------|
-| `NODE_VERSION` | `20` |
+| `NODE_VERSION` | `22` |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | `ajkz39i8` |
 | `NEXT_PUBLIC_SANITY_DATASET` | `production` |
 | `NEXT_PUBLIC_SANITY_API_VERSION` | `2026-01-01` |

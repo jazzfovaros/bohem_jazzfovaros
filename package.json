@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20 <25"
+    "node": ">=22 <25"
   },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "next build",
     "dev": "next dev",
     "build:hu": "cross-env NEXT_PUBLIC_LOCALE=hu next build",
     "build:en": "cross-env NEXT_PUBLIC_LOCALE=en next build",
