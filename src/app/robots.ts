@@ -18,7 +18,7 @@ export const dynamic = "force-static";
  */
 const DISALLOWED = ["/studio", "/studio/", "/api/", "/oldal/"];
 
-/** Agresszív SEO-crawlerek: nincs belőlük forgalom, viszont drágák. */
+/** Agresszív SEO / AI crawlerek: nincs belőlük hasznos forgalom, viszont BW-t esznek. */
 const BLOCKED_BOTS = [
   "AhrefsBot",
   "SemrushBot",
@@ -27,6 +27,14 @@ const BLOCKED_BOTS = [
   "PetalBot",
   "DataForSeoBot",
   "Bytespider",
+  "GPTBot",
+  "ChatGPT-User",
+  "CCBot",
+  "ClaudeBot",
+  "anthropic-ai",
+  "Google-Extended",
+  "Amazonbot",
+  "meta-externalagent",
 ];
 
 /**

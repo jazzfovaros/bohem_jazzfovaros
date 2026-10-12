@@ -40,19 +40,25 @@
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=2592000"
+    # 7 nap böngésző-cache — visszatérő látogató nem tölti újra a MB-os asseteket
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=2592000"
 
 [[headers]]
   for = "/documents/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=2592000"
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=2592000"
 
 [[headers]]
   for = "/favicon.png"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=2592000"
 
 [[headers]]
   for = "/site.webmanifest"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

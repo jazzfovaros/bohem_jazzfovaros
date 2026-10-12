@@ -28,8 +28,10 @@ const BUILD_LOCALE = getBuildLocale();
  * A locale-t kizárólag az URL határozza meg (`/en/...` vs `/...`), és a válasz
  * nem tartalmaz `Set-Cookie`-t, ezért az URL teljes értékű cache-kulcs.
  */
+/* HTML/RSC a CDN-en: 5 perc fresh + 1 óra SWR — kevesebb origin render.
+   Bandwidth HIT-nél is megy, de a Function/compute költség csökken. */
 const CDN_CACHE_CONTROL =
-  "public, s-maxage=60, stale-while-revalidate=240, durable";
+  "public, s-maxage=300, stale-while-revalidate=3600, durable";
 
 /** Draft/preview kérés — ilyenkor soha nem cache-elünk. */
 function isDraftRequest(request: NextRequest): boolean {
@@ -43,12 +45,9 @@ function applyCdnCache(response: NextResponse, request: NextRequest): NextRespon
   if (request.method !== "GET" && request.method !== "HEAD") return response;
   if (isDraftRequest(request)) {
     response.headers.set("Netlify-CDN-Cache-Control", "no-store");
-    response.headers.set("CDN-Cache-Control", "no-store");
     return response;
   }
-  /* Netlify Durable CDN + Cloudflare CDN (átállás alatt mindkettő) */
   response.headers.set("Netlify-CDN-Cache-Control", CDN_CACHE_CONTROL);
-  response.headers.set("CDN-Cache-Control", CDN_CACHE_CONTROL);
   return response;
 }
 
