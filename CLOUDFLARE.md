@@ -24,18 +24,28 @@ A Sanity CMS változatlan. Netlify egyelőre megmaradhat fallbacknek.
 
 ## GitHub → Cloudflare auto-deploy
 
-Workers project → **Settings → Builds**:
+Workers project → **Settings → Builds** — **ez a helyes párosítás**:
 
 | Mező | Érték |
 |------|--------|
-| **Build command** | `npm run cf:build` (= `opennextjs-cloudflare build`) |
-| **Deploy command** | `npx wrangler deploy` |
+| **Build command** | *(hagyd üresen)* |
+| **Deploy command** | `npm run cf:ci` |
 | **Root directory** | `/` (repo root) |
 | **Node version** | **22** (`NODE_VERSION=22`) |
 
-**Ne** használd a `npm run build`-et Cloudflare Build commandként: az OpenNext
-belül meghívja a `next build`-et (`npm run build`), és ha az ismét OpenNextet
-indítana, végtelen rekurzió lenne.
+A `cf:ci` = OpenNext build + deploy egyben. A sima `npx wrangler deploy`
+**nem** elég, ha előtte csak `next build` futott →  
+`Could not find compiled Open Next config`.
+
+Alternatíva (két lépés):
+
+| Mező | Érték |
+|------|--------|
+| **Build command** | `npm run cf:build` |
+| **Deploy command** | `npx wrangler deploy` |
+
+**Ne** használd a `npm run build`-et Cloudflare Build commandként (az csak
+Next, Workers bundle nélkül).
 
 ### Build variables (Settings → Builds → Variables)
 
