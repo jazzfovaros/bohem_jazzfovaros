@@ -6,7 +6,7 @@
     "node": ">=22 <25"
   },
   "scripts": {
-    "build": "next build",
+    "build": "node scripts/build.mjs",
     "dev": "next dev",
     "build:hu": "cross-env NEXT_PUBLIC_LOCALE=hu next build",
     "build:en": "cross-env NEXT_PUBLIC_LOCALE=en next build",
