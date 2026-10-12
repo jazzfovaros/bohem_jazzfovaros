@@ -2,8 +2,11 @@
   "name": "jazz-festival",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20 <25"
+  },
   "scripts": {
-    "build": "next build",
+    "build": "node scripts/build.mjs",
     "dev": "next dev",
     "build:hu": "cross-env NEXT_PUBLIC_LOCALE=hu next build",
     "build:en": "cross-env NEXT_PUBLIC_LOCALE=en next build",

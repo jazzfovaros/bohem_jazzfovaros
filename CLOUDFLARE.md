@@ -24,29 +24,44 @@ A Sanity CMS változatlan. Netlify egyelőre megmaradhat fallbacknek.
 
 ## GitHub → Cloudflare auto-deploy
 
-Workers / Pages project Settings → Builds:
+Workers project → **Settings → Builds**:
 
 | Mező | Érték |
 |------|--------|
-| **Build command** | `npx opennextjs-cloudflare build` |
+| **Build command** | `npm run build` (Workers CI-n automatikusan OpenNext) **vagy** `npx opennextjs-cloudflare build` |
 | **Deploy command** | `npx wrangler deploy` |
 | **Root directory** | `/` (repo root) |
-| **Node version** | **20** (ne 24) |
+| **Node version** | **20** (ne 24 — Build variables: `NODE_VERSION=20`) |
 
-**Ne** hagyd `npm run build`-et egyedül — az csak Next build, Workers worker nélkül.
+A `scripts/build.mjs` a `WORKERS_CI=1` env alapján OpenNextet futtat; Netlify / local továbbra is `next build`.
 
-## Environment variables (Cloudflare dashboard)
+### Build variables (Settings → Builds → Variables)
 
-Ugyanazok, mint Netlifyen:
+Kötelező a Next buildhez (vagy használd a kódbeli defaultokat):
 
-- `NEXT_PUBLIC_SANITY_PROJECT_ID` = `ajkz39i8`
-- `NEXT_PUBLIC_SANITY_DATASET` = `production`
-- `NEXT_PUBLIC_SANITY_API_VERSION` = `2026-01-01`
-- `NEXT_PUBLIC_SITE_URL_HU` = `https://jazzfovaros.hu`
-- `NEXT_PUBLIC_SITE_URL_EN` = `https://jazzfovaros.hu`
-- `NEXT_PUBLIC_LOCALE` = `hu`
-- `NEXT_PUBLIC_GA4_ID` = (opcionális)
-- `SANITY_API_READ_TOKEN` = **Secret**
+| Key | Value |
+|-----|--------|
+| `NODE_VERSION` | `20` |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `ajkz39i8` |
+| `NEXT_PUBLIC_SANITY_DATASET` | `production` |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | `2026-01-01` |
+| `NEXT_PUBLIC_SITE_URL_HU` | `https://jazzfovaros.hu` |
+| `NEXT_PUBLIC_SITE_URL_EN` | `https://jazzfovaros.hu` |
+| `NEXT_PUBLIC_LOCALE` | `hu` |
+| `NEXT_PUBLIC_GA4_ID` | `G-Y9BMR7XZK6` (opcionális) |
+
+Runtime secret (Settings → Variables and Secrets): `SANITY_API_READ_TOKEN`
+
+### KV a jazzfovaros-web accounton
+
+A `wrangler.jsonc` KV id jelenleg a **bzalan** account namespace-ére mutat.
+Az új accounton:
+
+```bash
+npx wrangler kv namespace create JAZZFOVAROS_NEXT_CACHE
+```
+
+Majd cseréld a `kv_namespaces[0].id`-t a kapott UUID-re és pusholj.
 
 ## Cache (KV)
 

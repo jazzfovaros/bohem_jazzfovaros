@@ -5,7 +5,12 @@ function normalizeProjectId(raw?: string): string {
   return /^[a-z0-9-]+$/.test(value) ? value : "";
 }
 
-export const sanityProjectId = normalizeProjectId(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+/** Publikus Sanity ID — ugyanaz, mint a netlify.toml / CLOUDFLARE.md (nem secret). */
+const DEFAULT_SANITY_PROJECT_ID = "ajkz39i8";
+
+export const sanityProjectId = normalizeProjectId(
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || DEFAULT_SANITY_PROJECT_ID,
+);
 export const sanityDataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 export const sanityApiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2026-01-01";
